@@ -10,7 +10,11 @@ namespace Ukg.Pro.Raas;
 
 public static class ReportRetriever
 {
-    public static async Task GetReport()
+    /// <summary>
+    /// Retrieves a report via the UKG RaaS API.
+    /// </summary>
+    /// <exception cref="UnauthorizedAccessException">Returned if logon to UKG BI Data Service fails.</exception>
+    public static async void GetReport()
     {
         DataContext dataContext;
         HttpRequestMessageProperty httpHeader = new();
@@ -114,7 +118,7 @@ public static class ReportRetriever
             }
             try
             {
-                Console.WriteLine("Successfully retrieved report.  Streaming report to file...");
+                Console.WriteLine("Successfully retrieved report response.  Streaming report to file...");
                 // Stream the contents of the report into a file:
                 await GetReportStreamFromResponseAsync(reportResponse);
                 Console.WriteLine("Successfully streamed report to file.");
@@ -131,7 +135,12 @@ public static class ReportRetriever
             }
         }
     }
-
+    /// <summary>
+    /// Given a ReportResponse from the UKG BI Data Service, stream it to a file.
+    /// </summary>
+    /// <param name="reportResponse">The ReportResponse received via GetReport().</param>
+    /// <returns>Task</returns>
+    /// <exception cref="Exception">Thrown if retrieving the report stream fails.</exception>
     private static async Task GetReportStreamFromResponseAsync(ReportResponse reportResponse)
     {
         // Set this to the path where you want the report saved:
