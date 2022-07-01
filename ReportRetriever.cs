@@ -158,16 +158,11 @@ public static class ReportRetriever
         if (streamReportResponse.Status == ReportResponseStatus.Failed)
             throw new Exception($"Failed to stream the BI report: {streamReportResponse.StatusMessage}.");
 
-        // Build a reader, writer and buffer:
+        // Build a reader:
         using StreamReader reader = new(streamReportResponse.ReportStream);
-        using StreamWriter writer = new(destination);
-        char[] buffer = new char[1024];
-
-        // Read StreamReportResponse into the buffer:
-        while (reader.Peek() > -1)
-            await reader.ReadAsync(buffer);
-
-        // Write the buffer to the destination:
-        await writer.WriteAsync(buffer);
+        // Get a FileStream:
+        using FileStream fileStream = new(destination, FileMode.Create);
+        // Copy the data from the original Stream to the FileStream:
+        await reader.BaseStream.CopyToAsync(fileStream);
     }
 }
