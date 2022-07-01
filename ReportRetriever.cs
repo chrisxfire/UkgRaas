@@ -6,6 +6,8 @@ using Ukg.StreamService;
 
 namespace Ukg.Pro.Raas;
 
+// https://learningcenter.ultimatesoftware.com/a/207076
+
 public static class ReportRetriever
 {
     public static async Task GetReport()
