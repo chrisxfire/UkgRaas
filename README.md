@@ -3,3 +3,5 @@ The [UKG Pro Web Services API Guide for RaaS](https://learningcenter.ultimatesof
 The example code in that guide targets an older version of .NET framework.
 This library targets .NET 6 and utilizes the asynchronous operations made available in the new 
 version of the Service References in the SOAP API endpoint.
+
+This code is licensed under the MIT License - one of the most permissive licenses available.
