@@ -36,7 +36,7 @@ public static class ReportRetriever
         const string reportPath = @"";
 
         // Choose this reportRequest if sending the Cognos BI report ID:
-        // ReportRequest reportRequest = new() { ReportPath = reportId };
+        // ReportRequest reportRequest = new() { ReportPath = $"storeID(\"{this.ReportId}\")" };
 
         // If not, you're using the Cognos BI report path, so choose this one:
         ReportRequest reportRequest = new() { ReportPath = reportPath };
